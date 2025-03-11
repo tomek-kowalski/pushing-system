@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import Head from "next/head";
 import Script from "next/script";
 import UncontrolledForm from "@/components/Form";
@@ -5,6 +6,15 @@ import Header from "@/components/Header";
 import styles from "@/styles/Home.module.css";
 
 export default function HomePage() {
+  useEffect(() => {
+    if (typeof window !== "undefined" && "serviceWorker" in navigator) {
+      navigator.serviceWorker
+        .register("/OneSignalSDK.sw.js")
+        .then(() => console.log("Service Worker registered! ✅"))
+        .catch((error) => console.error("Service Worker registration failed: ❌", error));
+    }
+  }, []);
+
   return (
     <>
       <Head>
@@ -14,11 +24,8 @@ export default function HomePage() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      {/* ✅ OneSignal SDK - Next.js way to load scripts */}
-      <Script
-        src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js"
-        strategy="afterInteractive"
-      />
+      {/* ✅ Load OneSignal SDK properly */}
+      <Script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" strategy="afterInteractive" />
 
       <Script id="onesignal-init" strategy="afterInteractive">
         {`
@@ -37,7 +44,6 @@ export default function HomePage() {
 
       <div>
         <Header />
-
         <main className={styles.main}>
           <UncontrolledForm />
         </main>
