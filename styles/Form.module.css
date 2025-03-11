@@ -1,0 +1,75 @@
+.frontPageForm {
+    display:flex;
+    flex-direction: column;
+    min-width: 360px;
+    margin:5%;
+    gap:10px;
+  }
+
+  .frontPageForm h2 {
+    margin-bottom:2rem;
+    animation: slide-up-fade-in 0.3s ease-out forwards;
+  }
+
+  .frontPageForm textarea {
+    font-size: 16px;
+  }
+
+  .formName, .formEmail {
+    height: 30px;
+    font-size: 16px;
+  }
+
+  .frontPageForm button {
+    height:30px;
+    font-weight:800;
+    border:2px solid #0886c5;
+    background-color:darkgreen;
+    color: #ededed;
+  }
+
+  .frontPageForm button:hover {
+    border:2px solid #0886c5;
+    background-color:#0886c5;
+    color: #ededed;
+  }
+
+  .goBack {
+    margin-top:30px;
+    height:30px;
+    font-weight:800;
+    width:100%;
+    border:2px solid #0886c5;
+    background-color:darkgreen;
+    color: #ededed;
+  }
+
+  .goBack:hover {
+    border:2px solid #0886c5;
+    background-color:#0886c5;
+    color: #ededed;
+  }
+
+
+  @keyframes slide-up-fade-in {
+  0% {
+    transform: translateX(300px);
+    opacity:0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity:1;
+  }
+} 
+
+.successMessage {
+  margin-top: 3rem;
+}
+
+.successMessage h2{
+  margin-bottom: 3rem;
+}
+
+.error {
+    color: orange;
+}
