@@ -10,8 +10,8 @@ export default function HomePage() {
     if (typeof window !== "undefined" && "serviceWorker" in navigator) {
       navigator.serviceWorker
         .register("/OneSignalSDK.sw.js")
-        .then(() => console.log("Service Worker registered! ✅"))
-        .catch((error) => console.error("Service Worker registration failed: ❌", error));
+        .then(() => console.log("✅ Service Worker registered successfully!"))
+        .catch((error) => console.error("❌ Service Worker registration failed:", error));
     }
   }, []);
 
