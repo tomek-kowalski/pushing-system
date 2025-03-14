@@ -2,13 +2,13 @@ import { initializeApp } from "firebase/app";
 import { getMessaging, getToken, onMessage } from "firebase/messaging";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCo5jIEaktZzqMEhhUzZ1Jtdop4OuY8N1Q",
+  apiKey: "",
   authDomain: "pushing-system.firebaseapp.com",
   projectId: "pushing-system",
   storageBucket: "pushing-system.firebasestorage.app",
-  messagingSenderId: "1096229244533",
-  appId: "1:1096229244533:web:10fa97357c5a0f65f1723c",
-  measurementId: "G-JDZGB5788D",
+  messagingSenderId: "",
+  appId: "",
+  measurementId: "",
 };
 
 
@@ -30,7 +30,7 @@ export const requestPermission = async () => {
 export const getFCMToken = async () => {
   try {
     const token = await getToken(messaging, {
-      vapidKey: "BBJBEJFEKXO2A3-AneWxqz2Vt988UcQzGunCyiHb1bCCSgADvnl0v_wICXgYTP_26FCIZfPbezBxeoa-CeoO03A",
+      vapidKey: "",
     });
     if (token) {
       console.log("FCM Token:", token);
