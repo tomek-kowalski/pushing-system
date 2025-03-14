@@ -1,12 +1,24 @@
 .frontPageForm {
     display:flex;
+    grid-area:contact;
     flex-direction: column;
     min-width: 360px;
     margin:5%;
     gap:10px;
   }
-
+  .frontPageFormPhone {
+    display:flex;
+    grid-area:phone;
+    flex-direction: column;
+    min-width: 360px;
+    margin:5%;
+    gap:10px;
+  }
   .frontPageForm h2 {
+    margin-bottom:2rem;
+    animation: slide-up-fade-in 0.3s ease-out forwards;
+  }
+  .frontPageFormPhone h2 {
     margin-bottom:2rem;
     animation: slide-up-fade-in 0.3s ease-out forwards;
   }
@@ -14,26 +26,23 @@
   .frontPageForm textarea {
     font-size: 16px;
   }
-
-  .formName, .formEmail {
+  .formName, .formEmail, .frontPageFormPhone input {
     height: 30px;
     font-size: 16px;
   }
-
-  .frontPageForm button {
+  .frontPageForm button, .frontPageFormPhone button{
     height:30px;
     font-weight:800;
     border:2px solid #0886c5;
     background-color:darkgreen;
     color: #ededed;
   }
-
-  .frontPageForm button:hover {
+  .frontPageForm button:hover, .frontPageFormPhone button:hover {
     border:2px solid #0886c5;
     background-color:#0886c5;
     color: #ededed;
   }
-
+  
   .goBack {
     margin-top:30px;
     height:30px;
@@ -43,13 +52,11 @@
     background-color:darkgreen;
     color: #ededed;
   }
-
   .goBack:hover {
     border:2px solid #0886c5;
     background-color:#0886c5;
     color: #ededed;
   }
-
 
   @keyframes slide-up-fade-in {
   0% {
@@ -72,4 +79,12 @@
 
 .error {
     color: orange;
+}
+.phoneResult {
+  display:flex;
+  flex-direction: column;
+  gap:10px;
+  grid-area: result;
+  max-width:360px;
+  margin:5%;
 }

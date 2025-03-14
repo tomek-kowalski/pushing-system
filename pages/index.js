@@ -3,6 +3,7 @@ import Head from "next/head";
 import Script from "next/script";
 import UncontrolledForm from "@/components/Form";
 import Header from "@/components/Header";
+import CheckPhone from "@/components/ChecPhone";
 import styles from "@/styles/Home.module.css";
 
 export default function HomePage() {
@@ -46,6 +47,7 @@ export default function HomePage() {
         <Header />
         <main className={styles.main}>
           <UncontrolledForm />
+          <CheckPhone />
         </main>
       </div>
     </>
