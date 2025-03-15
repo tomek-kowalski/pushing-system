@@ -2,3 +2,14 @@
     margin-top: 3rem;
     text-align: center;
   }
+.headerRow {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    gap: 1rem;
+}
+.headerMainTitle {
+  text-align: center;
+  margin: 4rem 0;
+}
