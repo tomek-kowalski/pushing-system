@@ -1,11 +1,26 @@
-.main {
-  display:grid;
-  grid-template-areas: 
-  'contact phone'
-  'contact result';
-  justify-content: center;
-  align-items: baseline;
-  min-height: 100%;
-  position: relative;
-  margin-top:4rem;
+@media( min-width:1200px) {
+  .main {
+    display:grid;
+    grid-template-areas: 
+    'contact phone'
+    'contact result';
+    justify-content: center;
+    align-items: baseline;
+    min-height: 100%;
+    position: relative;
+    margin-top:4rem;
+  }
 }
+
+@media(max-width:1199px) {
+  .main {
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: baseline;
+    min-height: 100%;
+    margin:0 0 4rem 0;
+  }
+}
+
+

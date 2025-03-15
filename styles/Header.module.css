@@ -13,3 +13,9 @@
   text-align: center;
   margin: 4rem 0;
 }
+
+@media(max-width:1199px) {
+  .headerRow {
+    margin:10px;
+  }
+}
