@@ -1,4 +1,4 @@
-import { database } from "../../dbConnect";
+import { database } from "../../dbConnect.js";
 import { ref, push } from "firebase/database";
 
 export default async function handler(req, res) {
