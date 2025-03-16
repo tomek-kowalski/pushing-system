@@ -17,23 +17,23 @@ function FormToDataBase() {
   
     const name = formData.get("name");
     const onlyLettersRegex = /^[a-zA-Z]{3,12}$/;
-    if (!name.match(onlyLettersRegex)) {
+    if (!onlyLettersRegex.test(name)) {
       validationErrors.name = "Imię powinno mieć od 3 do 12 liter.";
     }
-
+  
     const phone = formData.get("phone");
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!phone.match(emailRegex)) {
-      validationErrors.phone = "Proszę wpisać poprawny Email.";
+    const phoneRegex = /^[0-9]{9,15}$/;
+    if (!phoneRegex.test(phone)) {
+      validationErrors.phone = "Proszę wpisać poprawny numer telefonu.";
     }
   
-    const amount = formData.get("amount") || "";
-    if (amount.length === "") {
+    const amount = formData.get("amount");
+    if (!amount) {
       validationErrors.amount = "Wartość kwota nie może być pusta. Wpisz kwotę.";
     }
-
-    const interval = formData.get("interval") || "";
-    if (interval.length === "") {
+  
+    const interval = formData.get("interval");
+    if (!interval) {
       validationErrors.interval = "Wpisz interwał wysyłania wiadomości.";
     }
   
@@ -43,23 +43,33 @@ function FormToDataBase() {
     }
   
     setErrors({});
-  
     const data = { name, phone, amount, interval };
 
+    console.log('data',data)
+  
     try {
+      console.log('in try');
       const response = await fetch("/api/saveData", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
       });
   
+      const result = await response.json(); 
+      console.log('result',result);
+      if (response.ok && result.success) {
+        setFormSent(true);
+        event.target.reset();
+      } else {
+        console.error("Error:", result.error);
+        alert("Failed to save data: " + result.error);
+      }
     } catch (error) {
       console.error("Error:", error);
-      alert("An error occurred while sending the email.");
+      alert("An error occurred while sending data.");
     }
   };
+  
 
   return (
     <>
