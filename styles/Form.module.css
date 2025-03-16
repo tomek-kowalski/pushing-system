@@ -107,11 +107,9 @@
 .successMessage {
   margin-top: 3rem;
 }
-
 .successMessage h2{
   margin-bottom: 3rem;
 }
-
 .error {
     color: orange;
 }

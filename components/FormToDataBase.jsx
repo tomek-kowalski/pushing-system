@@ -1,7 +1,7 @@
 import { useState } from "react";
 import formStyle from "../styles/Form.module.css";
 
-function UncontrolledForm() {
+function FormToDataBase() {
   const [errors, setErrors] = useState({});
   const [formSent, setFormSent] = useState(false);
 
@@ -21,15 +21,20 @@ function UncontrolledForm() {
       validationErrors.name = "Imię powinno mieć od 3 do 12 liter.";
     }
 
-    const email = formData.get("email");
+    const phone = formData.get("phone");
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!email.match(emailRegex)) {
-      validationErrors.email = "Proszę wpisać poprawny Email.";
+    if (!phone.match(emailRegex)) {
+      validationErrors.phone = "Proszę wpisać poprawny Email.";
     }
   
-    const message = formData.get("message") || "";
-    if (message.length < 5) {
-      validationErrors.message = "Wiadomość powinna mieć co najmniej 5 znaków.";
+    const amount = formData.get("amount") || "";
+    if (amount.length === "") {
+      validationErrors.amount = "Wartość kwota nie może być pusta. Wpisz kwotę.";
+    }
+
+    const interval = formData.get("interval") || "";
+    if (interval.length === "") {
+      validationErrors.interval = "Wpisz interwał wysyłania wiadomości.";
     }
   
     if (Object.keys(validationErrors).length > 0) {
@@ -39,10 +44,10 @@ function UncontrolledForm() {
   
     setErrors({});
   
-    const data = { name, email, message };
+    const data = { name, phone, amount, interval };
 
     try {
-      const response = await fetch("/api/send-email", {
+      const response = await fetch("/api/saveData", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -50,13 +55,6 @@ function UncontrolledForm() {
         body: JSON.stringify(data),
       });
   
-      const result = await response.json();
-      if (result.success) {
-        setFormSent(true);
-        event.target.reset(); 
-      } else {
-        alert("Failed to send email: " + result.error);
-      }
     } catch (error) {
       console.error("Error:", error);
       alert("An error occurred while sending the email.");
@@ -67,18 +65,22 @@ function UncontrolledForm() {
     <>
       {!formSent ? (
         <form className={formStyle.frontPageForm} onSubmit={handleSubmit}>
-          <h2>Chcesz coś napisać?</h2>
-
-          <label>Opisz problem:</label>
-          <textarea name="message" rows="4" cols="50" required></textarea>
-          {errors.message && <div className={formStyle.error}>{errors.message}</div>}
+          <h2>Dodaj zawodnika</h2>
 
           <label>Imię:</label>
           <input className={formStyle.formName} type="text" name="name" required />
           {errors.name && <div className={formStyle.error}>{errors.name}</div>}
 
-          <label>Email:</label>
-          <input className={formStyle.formEmail} type="email" name="email" required />
+          <label>Numer telofonu:</label>
+          <input className={formStyle.formEmail} type="phone" name="phone" required />
+          {errors.email && <div className={formStyle.error}>{errors.email}</div>}
+
+          <label>Kwota:</label>
+          <input className={formStyle.formEmail} type="number" name="amount" required />
+          {errors.email && <div className={formStyle.error}>{errors.email}</div>}
+
+          <label>Interwał:</label>
+          <input className={formStyle.formEmail} type="number" name="interval" required />
           {errors.email && <div className={formStyle.error}>{errors.email}</div>}
 
           <button type="submit">Wyślij</button>
@@ -86,7 +88,7 @@ function UncontrolledForm() {
       ) : (
         <div className={formStyle.successMessage}>
           <h2>Dziękujemy!</h2>
-          <p>Twoja wiadomość została wysłana.</p>
+          <p>Dane zawodnika dodano do bazy.</p>
           <button onClick={handleGoBack} className={formStyle.goBack}>Wróć</button>
         </div>
       )}
@@ -94,5 +96,5 @@ function UncontrolledForm() {
   );
 }
 
-export default UncontrolledForm;
+export default FormToDataBase;
 

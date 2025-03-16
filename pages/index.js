@@ -4,6 +4,7 @@ import Script from "next/script";
 import UncontrolledForm from "@/components/Form";
 import Header from "@/components/Header";
 import CheckPhone from "@/components/ChecPhone";
+import FormToDataBase from "@/components/FormToDataBase";
 import styles from "@/styles/Home.module.css";
 
 export default function HomePage() {
@@ -45,6 +46,7 @@ export default function HomePage() {
 
       <div>
         <Header />
+        <FormToDataBase/>
         <main className={styles.main}>
           <UncontrolledForm />
           <CheckPhone />
