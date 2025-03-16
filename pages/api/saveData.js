@@ -14,7 +14,7 @@ export default async function handler(req, res) {
     }
 
     const dataRef = ref(database, "players");
-    console.log("Saving to Firebase:", { name, phone, amount, interval });
+    //console.log("Saving to Firebase:", { name, phone, amount, interval });
 
     await push(dataRef, { name, phone, amount, interval });
 

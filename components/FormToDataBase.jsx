@@ -93,7 +93,7 @@ function FormToDataBase() {
           <input className={formStyle.formEmail} type="number" name="interval" required />
           {errors.email && <div className={formStyle.error}>{errors.email}</div>}
 
-          <button type="submit">Wyślij</button>
+          <button type="submit">Wyślij</button> 
         </form>
       ) : (
         <div className={formStyle.successMessage}>
