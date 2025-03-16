@@ -1,4 +1,4 @@
-import { database } from "../../dbConnect.js";
+import { database } from "../../dbConnect";
 import { ref, push } from "firebase/database";
 
 export default async function handler(req, res) {
@@ -14,11 +14,13 @@ export default async function handler(req, res) {
     }
 
     const dataRef = ref(database, "players");
+    console.log("Saving to Firebase:", { name, phone, amount, interval });
+
     await push(dataRef, { name, phone, amount, interval });
 
-    res.status(200).json({ success: true, message: "Data saved successfully" });
+    return res.status(200).json({ success: true, message: "Data saved successfully" });
   } catch (error) {
-    console.error("Firebase Error:", error);
-    res.status(500).json({ error: "Internal Server Error" });
+    console.error("🔥 Firebase Error:", error.message || error);
+    return res.status(500).json({ error: "Internal Server Error", details: error.message });
   }
 }
