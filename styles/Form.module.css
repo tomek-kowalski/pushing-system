@@ -15,6 +15,22 @@
     margin:5%;
     gap:10px;
   }
+   .frontPagePlayers {
+    display:flex;
+    grid-area:players;
+    flex-direction: column;
+    min-width: 360px;
+    margin:5%;
+    gap:10px;
+  }
+  .frontPageAddNew {
+    display:flex;
+    grid-area:addNew;
+    flex-direction: column;
+    min-width: 360px;
+    margin:5%;
+    gap:10px;
+  }
   .phoneResult {
     display:flex;
     flex-direction: column;
@@ -40,6 +56,20 @@
     margin: 2rem auto 1rem auto;
     gap:10px;
   }
+  .frontPagePlayers {
+    display:flex;
+    flex-direction: column;
+    width: 360px;
+    margin: auto;
+    gap:10px;
+  }
+  .frontPageAddNew  {
+    display:flex;
+    flex-direction: column;
+    width: 360px;
+    margin: 2rem auto 1rem auto;
+    gap:10px;
+  }
   .phoneResult {
     display:flex;
     flex-direction: column;
@@ -49,11 +79,7 @@
   }
 }  
 
-  .frontPageForm h2 {
-    margin-bottom:2rem;
-    animation: slide-up-fade-in 0.3s ease-out forwards;
-  }
-  .frontPageFormPhone h2 {
+  .frontPageForm h2, .frontPageFormPhone h2, .frontPagePlayers h2, .frontPageAddNew  h2 {
     margin-bottom:2rem;
     animation: slide-up-fade-in 0.3s ease-out forwards;
   }
@@ -65,14 +91,14 @@
     height: 30px;
     font-size: 16px;
   }
-  .frontPageForm button, .frontPageFormPhone button{
+  .frontPageForm button, .frontPageFormPhone button, .frontPageAddNew  button {
     height:30px;
     font-weight:800;
     border:2px solid #0886c5;
     background-color:darkgreen;
     color: #ededed;
   }
-  .frontPageForm button:hover, .frontPageFormPhone button:hover {
+  .frontPageForm button:hover, .frontPageFormPhone button:hover, .frontPageAddNew  button:hover {
     border:2px solid #0886c5;
     background-color:#0886c5;
     color: #ededed;
@@ -114,3 +140,27 @@
     color: orange;
 }
 
+
+.frontPagePlayers h2 {
+  margin-bottom: 2rem;
+  animation: slide-up-fade-in 0.3s ease-out forwards;
+}
+.frontPagePlayers ul li  {
+  display: flex;
+  flex-direction: column;
+  border: 5px solid darkgreen;
+  border-radius: 50px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.frontPagePlayers ul li h3 {
+  margin: 0 auto;
+  padding: 1rem;
+  color: white;
+}
+.frontPagePlayers ul li p {
+  margin: 0 auto;
+  padding: 0.5rem;
+  color: white;
+}

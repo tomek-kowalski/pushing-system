@@ -74,7 +74,7 @@ function FormToDataBase() {
   return (
     <>
       {!formSent ? (
-        <form className={formStyle.frontPageForm} onSubmit={handleSubmit}>
+        <form className={formStyle.frontPageAddNew} onSubmit={handleSubmit}>
           <h2>Dodaj zawodnika</h2>
 
           <label>Imię:</label>

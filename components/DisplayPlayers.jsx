@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import formStyle from "../styles/Form.module.css";
-import { database } from "../dbConnect"; // Ensure correct import
+import { database } from "../dbConnect";
 import { ref, onValue } from "firebase/database";
 
-export default function DisplayPlayers() {
+export default function DisplayPlayers({ onEdit }) {
   const [players, setPlayers] = useState([]);
 
   useEffect(() => {
@@ -20,8 +20,23 @@ export default function DisplayPlayers() {
     return () => unsubscribe();
   }, []);
 
+  const handleDelete = async (id) => {
+    if (confirm("Czy na pewno chcesz usunąć tego zawodnika?")) {
+      try {
+        await fetch("/api/deletePlayer", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ id }),
+        });
+      } catch (error) {
+        console.error("Failed to delete player:", error);
+      }
+    }
+  };
+
+
   return (
-    <section className={formStyle.frontPageForm}>
+    <section className={formStyle.frontPagePlayers}>
       <h2>Lista zawodników</h2>
       <ul>
         {players.length > 0 ? (
@@ -32,8 +47,8 @@ export default function DisplayPlayers() {
               <p>Kwota: {player.amount}</p>
               <p>Interwał: {player.interval}</p>
               <div>
-                <button>Edytuj</button>
-                <button>Usuń</button>
+                <button onClick={() => onEdit(player.id)}>Edytuj</button>
+                <button onClick={() => handleDelete(player.id)}>Usuń</button>
               </div>
             </li>
           ))
@@ -44,3 +59,4 @@ export default function DisplayPlayers() {
     </section>
   );
 }
+

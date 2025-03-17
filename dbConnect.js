@@ -13,7 +13,7 @@ const firebaseConfig = {
   databaseURL: process.env.NEXT_PUBLIC_FIREBASE_DATABASE_URL,
 };
 
-console.log("Firebase Config:", firebaseConfig);
+//console.log("Firebase Config:", firebaseConfig);
 
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
