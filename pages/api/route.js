@@ -3,12 +3,6 @@ import twilio from "twilio";
 
 export default async function handler(req, res) {
 
-    console.log("Received request with headers:", req.headers);
-    if (req.headers.authorization !== `Bearer ${process.env.CRON_SECRET}`) {
-        console.log("Unauthorized request");
-        return res.status(401).end('Unauthorized');
-    }
-    
     if (req.method !== "GET") {
         console.log("Invalid method:", req.method);
         return res.status(405).json({ error: "Method Not Allowed" });
@@ -37,8 +31,7 @@ export default async function handler(req, res) {
         const messages = Object.values(players).map(async (player) => {
             console.log(`Sending message to ${player.name} at +48${player.phone}`);
             return client.messages.create({
-                body: `P. ${player.name}, mamy nie rozliczone ${player.amount} zl za ostatnie prace. 
-                       Proszę o uregulowanie płatności. Tomasz Kowalski`,
+                body: `P. ${player.name}, mamy nie rozliczone ${player.amount} zl za ostatnie prace. Proszę o uregulowanie płatności. Tomasz Kowalski`,
                 messagingServiceSid,
                 to: `+48${player.phone}`,
             })
