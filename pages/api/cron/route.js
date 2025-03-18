@@ -2,6 +2,11 @@ import { getDatabase, ref, get } from "firebase/database";
 import twilio from "twilio";
 
 export default async function handler(req, res) {
+
+    if (req.headers.get('Authorization') !== `Bearer ${process.env.CRON_SECRET}`) {
+        return res.status(401).end('Unauthorized');
+      }
+    
     if (req.method !== "GET") {
         return res.status(405).json({ error: "Method Not Allowed" });
     }
@@ -25,7 +30,7 @@ export default async function handler(req, res) {
 
         const messages = Object.values(players).map(async (player) => {
             return client.messages.create({
-                body: `Panie ${player.name}ie, mamy nie rozliczone ${player.amount} zl za ostanie prace. 
+                body: `P. ${player.name}, mamy nie rozliczone ${player.amount} zl za ostanie prace. 
                        Proszę o uregulowanie płatności. Tomasz Kowalski`,
                 messagingServiceSid,
                 to: `+48${player.phone}`,
@@ -34,7 +39,7 @@ export default async function handler(req, res) {
 
         await Promise.all(messages);
         return res.status(200).json({ success: true, message: "Messages sent!" });
-    } catch (error) {
+    } catch (error) {   
         console.error("Error sending messages:", error);
         return res.status(500).json({ error: "Failed to send messages" });
     }
